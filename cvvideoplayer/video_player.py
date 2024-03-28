@@ -275,7 +275,7 @@ class VideoPlayer:
             self._recorder.write_frame_to_video(frame)
 
         cv2.imshow(winname=self._video_name, mat=frame)
-        cv2.waitKey(5)
+        cv2.waitKey(10)
 
     def _next_frame(self, num_frames_to_skip=1):
         if self._frame_num == self._last_frame:

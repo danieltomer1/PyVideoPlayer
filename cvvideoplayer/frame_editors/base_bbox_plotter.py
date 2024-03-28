@@ -17,7 +17,6 @@ class BaseBboxPlotter(BaseFrameEditor, ABC):
         drawing_thickness: int = 1,
         font_scale: float = 0.5,
         label_text_color: Tuple[int, int, int] = (255, 255, 255),
-        label_line_color: Optional[Tuple[int, int, int]] = None,
         label_filling_color: Tuple[int, int, int] = (0, 0, 0),
     ):
         super().__init__(enable_by_default)
@@ -28,7 +27,6 @@ class BaseBboxPlotter(BaseFrameEditor, ABC):
         self._show_below_bbox_label = show_below_bbox_label
         self._default_bbox_color = default_bbox_color
         self._label_text_color = label_text_color
-        self._label_line_color = label_line_color or default_bbox_color
         self._label_filling_color = label_filling_color
 
     @property
@@ -60,7 +58,7 @@ class BaseBboxPlotter(BaseFrameEditor, ABC):
                     text=bbox.above_label,
                     font_scale=self._font_scale,
                     thickness=self._thickness,
-                    label_line_color=self._label_line_color,
+                    label_line_color=bbox.color or self._default_bbox_color,
                     text_color=self._label_text_color,
                     filling_color=(0, 0, 0),
                 )
@@ -74,9 +72,7 @@ class BaseBboxPlotter(BaseFrameEditor, ABC):
                     text=bbox.below_label,
                     font_scale=self._font_scale,
                     thickness=self._thickness,
-                    label_line_color=self._label_line_color,
                     text_color=self._label_text_color,
-                    filling_color=(0, 0, 0),
                 )
         return frame
 

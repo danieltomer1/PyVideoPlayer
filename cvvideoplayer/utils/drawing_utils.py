@@ -41,8 +41,8 @@ def draw_label(
     text,
     font_scale,
     thickness,
-    label_line_color,
     text_color,
+    label_line_color=(0, 0, 0),
     filling_color=(0, 0, 0),
 ):
     assert below_or_above in {"below", "above"}
